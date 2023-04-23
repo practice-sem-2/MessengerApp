@@ -4,8 +4,8 @@
              x:Class="Messenger_App.View.MessageView"
              x:Name="this">
     <Grid Grid.RowDefinitions="30, Auto" Grid.ColumnDefinitions="*, 5*" BindingContext="{x:Reference this}">
-        <Image Grid.RowSpan="2" Source="{Binding SenderDisplay}"/>
+        <Image Grid.RowSpan="2" Source="{Binding ProfilePicture}"/>
         <Label x:Name="UsernameLabel" Text="{Binding SenderDisplay}" Grid.Column="1"/>
-        <Label x:Name="MessageTextLabel" Text="{Binding DisplayedText}" Grid.Column="1" Grid.Row="1"/>
+        <Label x:Name="MessageTextLabel" Text="{Binding Source={x:Reference this},Path=DisplayedText}" Grid.Column="1" Grid.Row="1"/>
     </Grid>
 </ContentView>

@@ -8,11 +8,10 @@
     
     Shell.FlyoutBehavior="Disabled">
 
-    <!--TabBar>
+    <TabBar>
         <Tab Title="Contacts">
             <ShellContent x:Name="mainPage" ContentTemplate="{DataTemplate view:MainPage}" Route="MainPage"/>
         </Tab>
-    </TabBar-->
-    <ShellContent ContentTemplate="{DataTemplate view:MainPage}"/>
-
+    </TabBar>
+    
 </Shell>

@@ -13,6 +13,13 @@ namespace Messenger_App.Model
         public string ChatID { get; }
 
         public Image ProfilePicture { get; }
-        
+
+        public User(string name, string surname, string chatID)
+        {
+            Name = name;
+            Surname = surname;
+            ChatID = chatID;
+            //ProfilePicture = profilePicture;
+        }
     }
 }

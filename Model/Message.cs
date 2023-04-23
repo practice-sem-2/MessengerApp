@@ -5,26 +5,17 @@ namespace Messenger_App.Model
     {
         public Message(string text, User sentBy)
         {
-            _messageText= text;
+            MessageText = text;
             _sentBy= sentBy;
         }
 
-        private string _messageText;
-
         public string MessageText 
-        { 
-            get => _messageText;
-            set
-            {
-                _messageText = value;
-                _isEdited = true;
-            } 
+        {
+            get;
         }
 
-        public bool IsEdited { get; }
-        internal User SentBy { get; }
+        internal User SentBy { get => _sentBy; }
 
-        private bool _isEdited = false;
 
         private User _sentBy;
     }

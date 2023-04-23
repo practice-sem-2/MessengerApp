@@ -3,21 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Messenger_App.View.MainPage"
              xmlns:viewModel="clr-namespace:Messenger_App.ViewModel"
-             
+             xmlns:local="clr-namespace:Messenger_App.View"
+             xmlns:model="clr-namespace:Messenger_App.Model"
+             x:DataType="viewModel:DialogViewModel"
              >
 
-    <Grid RowDefinitions="*, 30">
+    <Grid RowDefinitions="*, 30" ColumnDefinitions="*, 30">
         <ScrollView Grid.Row="0">
-            <CollectionView >
-
+            <CollectionView ItemsSource="{Binding MessagesCollection}">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        
+                    <DataTemplate x:DataType="model:Message">
+                        <local:MessageView DisplayedText="{Binding MessageText}" SenderDisplay="Bubbaa"/>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </ScrollView>
-        <Entry Grid.Row="1" />
+        <Entry x:Name="SenderEntry" Grid.Row="1" />
+        <Button Command="{Binding SendMessage}" Grid.Row="1" Grid.Column="1" CommandParameter="{Binding Source={x:Reference SenderEntry},Path=Text}"/>
     </Grid>
         
 </ContentPage>

@@ -1,25 +1,19 @@
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-
 namespace Messenger_App.View;
 
-public partial class MessageView : ContentView, INotifyPropertyChanged
+public partial class MessageView : ContentView
 {
+	public static readonly BindableProperty SenderDisplayProperty = BindableProperty.Create(nameof(SenderDisplay), typeof(string), typeof(MessageView), string.Empty);
+	public static readonly BindableProperty MessageDisplayProperty = BindableProperty.Create(nameof(DisplayedText), typeof(string), typeof(MessageView), string.Empty);
 
-	public string DisplayedText { get; set; }
+    public string DisplayedText { get => (string)GetValue(MessageDisplayProperty); set => SetValue(MessageDisplayProperty, value); }
 
-	public string SenderDisplay { get; set; }
-
+	public string SenderDisplay { get => (string)GetValue(SenderDisplayProperty); set => SetValue(SenderDisplayProperty, value); }
+		
 	public Image ProfilePicture { get; set; }
 
 	public MessageView()
 	{
 		InitializeComponent();
-	}
-	public event PropertyChangedEventHandler PropertyChanged;
-	public void OnPropertyChanged([CallerMemberName]string propertyName = null)
-	{
-		PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
 	}
 	
 }
