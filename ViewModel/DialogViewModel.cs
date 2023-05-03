@@ -22,7 +22,7 @@ namespace Messenger_App.ViewModel
 
         private void SendMessageMethod(string message)
             {
-            MessagesCollection.Add(new Message(message, new User("Korsakov", "maxim", "228")));
+            MessagesCollection.Add(new Message(message, new User("GalTeXx")));
             //SEND MESSAGE VIA API;
 
         }

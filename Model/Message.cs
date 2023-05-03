@@ -1,12 +1,16 @@
 ﻿
+using Messenger_App.View;
+
 namespace Messenger_App.Model
 {
     internal class Message
     {
-        public Message(string text, User sentBy)
+        public static readonly BindableProperty MessageTextProperty = BindableProperty.Create(nameof(MessageText), typeof(string), typeof(Message), string.Empty);
+        public static readonly BindableProperty SenderNameProperty = BindableProperty.Create(nameof(SenderUserName), typeof(string), typeof(Message), string.Empty);
+        public Message(string text, User sender)
         {
             MessageText = text;
-            _sentBy= sentBy;
+            _sender= sender;
         }
 
         public string MessageText 
@@ -14,9 +18,20 @@ namespace Messenger_App.Model
             get;
         }
 
-        internal User SentBy { get => _sentBy; }
+        internal string SenderUserName { get => _sender.UserName; }
 
+        public LayoutOptions ScreenPosition { get
+            {
+                if (SenderUserName == User.ThisUser)
+                {
+                    return LayoutOptions.End;
+                }
+                return LayoutOptions.Start;
+            } 
+        }
 
-        private User _sentBy;
+        private User _sender;
+
+        
     }
 }

@@ -8,17 +8,13 @@ namespace Messenger_App.Model
 {
     internal class User
     {
-        public string Name { get; }   
-        public string Surname { get; }   
-        public string ChatID { get; }
-
+        static public string ThisUser = "GalTeXx";
+        public string UserName { get; }   
         public Image ProfilePicture { get; }
 
-        public User(string name, string surname, string chatID)
+        public User(string username)
         {
-            Name = name;
-            Surname = surname;
-            ChatID = chatID;
+            UserName = username;
             //ProfilePicture = profilePicture;
         }
     }
