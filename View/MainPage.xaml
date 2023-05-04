@@ -7,26 +7,10 @@
              xmlns:model="clr-namespace:Messenger_App.Model"
              >
 
-    <Grid RowDefinitions="90, *, 60" ColumnDefinitions="90, *, 60">
-        <Grid ColumnDefinitions="90, 90, *">
-            <Button/>
-            <Image Source="amogus.svg" Grid.Column="1"/>
-            <Label Text="Name" Grid.Column="2" FontSize="30" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-        </Grid>
-        <ScrollView Grid.Row="1" Grid.ColumnSpan="3">
-            <CollectionView ItemsSource="{Binding MessagesCollection}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid ColumnDefinitions="Auto" BindingContext="{x:Reference this}" HorizontalOptions="{Binding ScreenPosition}">
-                            <Border BackgroundColor="LightBlue" StrokeShape="RoundRectangle 30,30,30,30"/>
-                            <Label x:Name="MessageTextLabel" Text="{Binding MessageText}" Grid.Row="1"/>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </ScrollView>
-        <Entry x:Name="SenderEntry" Grid.Row="2" Grid.ColumnSpan="2"/>
-        <Button Text="Send" Grid.Column="2" Grid.Row="2" Command="{Binding SendMessage}" CommandParameter="{Binding Source={x:Reference SenderEntry}, Path=Text}"/>
+    <Grid RowDefinitions="*, 40, 30, 40, 30 40, 30, 40, *" ColumnDefinitions="*, 1.5*, *">
+        <Entry Grid.Column="1" Grid.Row="1" Placeholder="Username"/>
+        <Entry Grid.Column="1" Grid.Row="3" Placeholder="Password"/>
+        <Entry Grid.Column="1" Grid.Row="3" Placeholder="Roomname"/>
+        <Button Grid.Column="1" Grid.Row="5" Text="Enter"/>
     </Grid>
-        
 </ContentPage>

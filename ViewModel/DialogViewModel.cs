@@ -21,7 +21,7 @@ namespace Messenger_App.ViewModel
         public ICommand SendMessage => new Command<string>(SendMessageMethod);
 
         private void SendMessageMethod(string message)
-            {
+        {
             MessagesCollection.Add(new Message(message, new User("GalTeXx")));
             //SEND MESSAGE VIA API;
 
@@ -34,7 +34,9 @@ namespace Messenger_App.ViewModel
 
         public DialogViewModel()
         {
+            //GET ALL MESSAGES VIA API
             MessagesCollection = new();
+            
         }
     }
 }
