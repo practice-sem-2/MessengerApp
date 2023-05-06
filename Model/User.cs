@@ -8,7 +8,8 @@ namespace Messenger_App.Model
 {
     public class User
     {
-        static public string ThisUser = "GalTeXx";
+        static public string ThisUserName = null;
+        static public string ThisUserToken = null;
         public string UserName { get; }   
         public Image ProfilePicture { get; }
 

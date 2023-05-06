@@ -22,7 +22,7 @@ namespace Messenger_App.Model
 
         public LayoutOptions ScreenPosition { get
             {
-                if (SenderUserName == User.ThisUser)
+                if (SenderUserName == User.ThisUserName)
                 {
                     return LayoutOptions.End;
                 }

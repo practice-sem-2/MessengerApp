@@ -19,7 +19,7 @@ public partial class MainPage : ContentPage
 
     private async void Enter_Button_Clicked(object sender, EventArgs e)
     {
-		User.ThisUser = loginEntry.Text;
+		User.ThisUserName = loginEntry.Text;
 
         HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"http://192.168.1.10:6969/sign-in?username={loginEntry.Text}");
         string responseBody;
@@ -38,8 +38,16 @@ public partial class MainPage : ContentPage
             return;
         }
 
+        User.ThisUserToken = responseBody.Split("\"")[7];
+        if(User.ThisUserToken == null)
+        {
+            statusLabel.Text = "somethign went wrong with login!";
+            return;
+        }
+
         request = new HttpRequestMessage(HttpMethod.Post, $"http://192.168.1.10:6969/rooms/{RoomNameEntry.Text}/");
         request.Headers.Add("accept", "application/json");
+        request.Headers.Add("Authorization", $"Bearer {User.ThisUserToken}");
         request.Content = new StringContent("");
         request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
         try
