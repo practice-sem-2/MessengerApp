@@ -22,7 +22,7 @@ public partial class MainPage : ContentPage
 		User.ThisUser = loginEntry.Text;
 
         HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"http://192.168.1.10:6969/sign-in?username={loginEntry.Text}");
-
+        string responseBody;
         request.Headers.Add("accept", "application/json");
         request.Content = new StringContent("");
         request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
@@ -30,7 +30,7 @@ public partial class MainPage : ContentPage
         {
             HttpResponseMessage response = await client.SendAsync(request);
             response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
+            responseBody = await response.Content.ReadAsStringAsync();
         }
         catch (Exception) 
         {
@@ -46,7 +46,6 @@ public partial class MainPage : ContentPage
         {
             HttpResponseMessage response = await client.SendAsync(request);
             response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
         }
         catch(Exception ex) 
         {
