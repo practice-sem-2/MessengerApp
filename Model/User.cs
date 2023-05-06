@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Messenger_App.Model
 {
-    internal class User
+    public class User
     {
         static public string ThisUser = "GalTeXx";
         public string UserName { get; }   

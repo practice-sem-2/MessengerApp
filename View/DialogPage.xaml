@@ -5,13 +5,15 @@
              xmlns:viewModel="clr-namespace:Messenger_App.ViewModel"
              xmlns:local="clr-namespace:Messenger_App.View"
              xmlns:model="clr-namespace:Messenger_App.Model"
-             Title="DialogPage">
+             Shell.NavBarIsVisible="False"
+             >
 
-    <Grid RowDefinitions="90, *, 60" ColumnDefinitions="90, *, 60">
-        <Grid ColumnDefinitions="90, 90, *">
-            <Button/>
-            <Image Source="amogus.svg" Grid.Column="1"/>
-            <Label Text="Name" Grid.Column="2" FontSize="30" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+
+    <Grid RowDefinitions="60, *, 60" ColumnDefinitions="90, *, 60">
+        <Grid ColumnDefinitions="60, *" Grid.ColumnSpan="3">
+            <Button Clicked="Back_Button_Clicked"/>
+            <Label Text="{Binding RoomName}" Grid.Column="1" FontSize="30" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
         </Grid>
         <ScrollView Grid.Row="1" Grid.ColumnSpan="3">
             <CollectionView ItemsSource="{Binding MessagesCollection}">

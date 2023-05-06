@@ -5,13 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Messenger_App"
     xmlns:view="clr-namespace:Messenger_App.View"
-    
     Shell.FlyoutBehavior="Disabled">
-
     <TabBar>
         <Tab Title="Contacts">
             <ShellContent x:Name="mainPage" ContentTemplate="{DataTemplate view:MainPage}" Route="MainPage"/>
         </Tab>
     </TabBar>
+    
     
 </Shell>

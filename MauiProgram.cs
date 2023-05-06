@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Messenger_App.View;
+using Messenger_App.ViewModel;
+using Microsoft.Extensions.Logging;
 
 namespace Messenger_App;
 
@@ -14,6 +16,10 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
+
+		builder.Services.AddTransient<DialogViewModel>();
+		builder.Services.AddTransient<DialogPage>();
+
 
 #if DEBUG
 		builder.Logging.AddDebug();

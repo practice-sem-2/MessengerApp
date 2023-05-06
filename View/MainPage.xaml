@@ -7,10 +7,11 @@
              xmlns:model="clr-namespace:Messenger_App.Model"
              >
 
-    <Grid RowDefinitions="*, 40, 30, 40, 30, 40, 30, 40, *" ColumnDefinitions="*, 1.5*, *">
-        <Entry Grid.Column="1" Grid.Row="1" Placeholder="Username"/>
-        <Entry Grid.Column="1" Grid.Row="3" Placeholder="Password"/>
-        <Entry Grid.Column="1" Grid.Row="3" Placeholder="Roomname"/>
-        <Button Grid.Column="1" Grid.Row="5" Text="Enter"/>
+    <Grid RowDefinitions=".75*, 150, 30, 40, 30, 40, 30, 40, 30, 40, *" ColumnDefinitions="*, 1.5*, *">
+        <Image Source="cool_ass_skeleton" Grid.Column="1" Grid.Row="1"/>
+        <Label x:Name="statusLabel" HorizontalOptions="Center" HorizontalTextAlignment="Center" Grid.Row="3" Grid.ColumnSpan="3" Text="Nothing can go wrong, if nothign goes"/>
+        <Entry x:Name="loginEntry" Grid.Column="1" Grid.Row="5" Placeholder="Username"/>
+        <Entry x:Name="RoomNameEntry" Grid.Column="1" Grid.Row="7" Placeholder="Roomname"/>
+        <Button Grid.Column="1" Grid.Row="9" Text="Enter" Clicked="Enter_Button_Clicked"/>
     </Grid>
 </ContentPage>

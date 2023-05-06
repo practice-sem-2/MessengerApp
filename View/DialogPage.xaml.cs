@@ -4,9 +4,14 @@ namespace Messenger_App.View;
 
 public partial class DialogPage : ContentPage
 {
-	public DialogPage()
+	public DialogPage(DialogViewModel vm)
 	{
 		InitializeComponent();
-		BindingContext = new DialogViewModel();
-	}
+        BindingContext = vm;
+    }
+
+    private void Back_Button_Clicked(object sender, EventArgs e)
+    {
+		Shell.Current.SendBackButtonPressed();
+    }
 }

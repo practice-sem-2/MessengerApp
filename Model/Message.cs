@@ -3,7 +3,7 @@ using Messenger_App.View;
 
 namespace Messenger_App.Model
 {
-    internal class Message
+    public class Message
     {
         public static readonly BindableProperty MessageTextProperty = BindableProperty.Create(nameof(MessageText), typeof(string), typeof(Message), string.Empty);
         public static readonly BindableProperty SenderNameProperty = BindableProperty.Create(nameof(SenderUserName), typeof(string), typeof(Message), string.Empty);
