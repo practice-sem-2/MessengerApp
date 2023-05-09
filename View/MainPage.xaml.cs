@@ -10,8 +10,9 @@ public partial class MainPage : ContentPage
 {
 
 	HttpClient client = new();
+    string IP = "192.168.159.95";
 
-	public MainPage()
+    public MainPage()
 	{
 		InitializeComponent();
 		BindingContext = new DialogViewModel();
@@ -21,7 +22,7 @@ public partial class MainPage : ContentPage
     {
 		User.ThisUserName = loginEntry.Text;
 
-        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"http://192.168.1.10:6969/sign-in?username={loginEntry.Text}");
+        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"http://{IP}:6969/sign-in?username={loginEntry.Text}");
         string responseBody;
         request.Headers.Add("accept", "application/json");
         request.Content = new StringContent("");
@@ -45,7 +46,7 @@ public partial class MainPage : ContentPage
             return;
         }
 
-        request = new HttpRequestMessage(HttpMethod.Post, $"http://192.168.1.10:6969/rooms/{RoomNameEntry.Text}/");
+        request = new HttpRequestMessage(HttpMethod.Post, $"http://{IP}:6969/rooms/{RoomNameEntry.Text}/");
         request.Headers.Add("accept", "application/json");
         request.Headers.Add("Authorization", $"Bearer {User.ThisUserToken}");
         request.Content = new StringContent("");
@@ -57,6 +58,11 @@ public partial class MainPage : ContentPage
         }
         catch(Exception ex) 
         {
+            if(ex is HttpRequestException && Convert.ToInt32((ex as HttpRequestException).StatusCode) == 400)
+            {
+                //JOIN THE ROOM
+            }
+
             statusLabel.Text = "somethign went wrong with the room!";
             return;
         }
