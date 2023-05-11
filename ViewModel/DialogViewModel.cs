@@ -69,6 +69,8 @@ namespace Messenger_App.ViewModel
         private void FormatRecivedJsonIntoMessage(string wsResult)
         {
             //it is 4-6 hrs before deadline and i am NOT going to parse JSONs as intended
+            if (wsResult.Split("\"").Length < 4)
+                return;
             if (wsResult.Split("\"")[3] == "user_connected")
             {
                 MessagesCollection.Add(new Message($"You joined this room", new User("System")));
@@ -118,10 +120,14 @@ namespace Messenger_App.ViewModel
         public ICommand SendMessage => new Command<string>(SendMessageMethod);
         public ICommand EndDialog => new Command(Close);
 
-        private void Close()
+        private async void Close()
         {
-            ws.Dispose();
-            _client.Dispose();
+            try
+            {
+                await ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "User Left", CancellationToken.None);
+                _client.Dispose();
+            }
+            catch { }
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
