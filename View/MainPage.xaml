@@ -7,11 +7,13 @@
              xmlns:model="clr-namespace:Messenger_App.Model"
              >
 
-    <Grid RowDefinitions=".75*, 150, 30, 40, 30, 40, 30, 40, 30, 40, *" ColumnDefinitions="*, 1.5*, *">
-        <Image Source="cool_ass_skeleton" Grid.Column="1" Grid.Row="1"/>
-        <Label x:Name="statusLabel" HorizontalOptions="Center" HorizontalTextAlignment="Center" Grid.Row="3" Grid.ColumnSpan="3" Text="Nothing can go wrong, if nothign goes"/>
-        <Entry x:Name="loginEntry" Grid.Column="1" Grid.Row="5" Placeholder="Username"/>
-        <Entry x:Name="RoomNameEntry" Grid.Column="1" Grid.Row="7" Placeholder="Roomname"/>
-        <Button Grid.Column="1" Grid.Row="9" Text="Enter" Clicked="Enter_Button_Clicked"/>
+    <Grid RowDefinitions=".75*, 150, 30, 40, 30, 40, 30, 40, 30, 40, 20, .75*" ColumnDefinitions="*, .75*, .75*, *">
+        <Image Source="cool_ass_skeleton" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Label x:Name="statusLabel" HorizontalOptions="Center" HorizontalTextAlignment="End" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="Nothing can go wrong, if nothign goes"/>
+        <Entry x:Name="loginEntry" Grid.Column="1" Grid.Row="5" Placeholder="Username" Grid.ColumnSpan="2"/>
+        <Entry x:Name="passwordEntry" Grid.Column="1" Grid.Row="7" Placeholder="Password" Grid.ColumnSpan="2"/>
+        <Button Grid.Column="1" Grid.Row="9" Text="Enter" Clicked="Enter_Button_Clicked" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="singInRadioButton" GroupName="signingGroup" IsChecked="True" Content="Sign In" FontSize="9" Grid.Row="10" Grid.Column="1"/>
+        <RadioButton GroupName="signingGroup" IsChecked="False" FontSize="9" Content="Sign Up" Grid.Row="10" Grid.Column="2"/>
     </Grid>
 </ContentPage>

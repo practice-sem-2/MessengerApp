@@ -14,4 +14,14 @@ public partial class DialogPage : ContentPage
     {
 		Shell.Current.SendBackButtonPressed();
     }
+
+    private void ContentPage_Appearing(object sender, EventArgs e)
+    {
+
+    }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        SenderEntry.Text = "";
+    }
 }

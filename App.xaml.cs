@@ -2,7 +2,8 @@
 
 public partial class App : Application
 {
-	public App()
+	public static readonly string IP = "77.37.200.25";
+    public App()
 	{
 		InitializeComponent();
 

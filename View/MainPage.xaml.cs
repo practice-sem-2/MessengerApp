@@ -1,16 +1,12 @@
 ﻿using Messenger_App.Model;
 using Messenger_App.ViewModel;
 using System.Net.Http.Headers;
-using System.Net.Http;
-using System.Text.Json.Nodes;
-
 namespace Messenger_App.View;
 
 public partial class MainPage : ContentPage
 {
 
-	HttpClient client = new();
-    string IP = "192.168.159.95";
+	private readonly HttpClient client = new();
 
     public MainPage()
 	{
@@ -20,13 +16,14 @@ public partial class MainPage : ContentPage
 
     private async void Enter_Button_Clicked(object sender, EventArgs e)
     {
-		User.ThisUserName = loginEntry.Text;
+        string mode = singInRadioButton.IsChecked ? "in" : "up";
+        HttpRequestMessage request = new(HttpMethod.Post, $"http://{App.IP}:6969/auth/sign-{mode}");
 
-        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"http://{IP}:6969/sign-in?username={loginEntry.Text}");
-        string responseBody;
         request.Headers.Add("accept", "application/json");
-        request.Content = new StringContent("");
+
+        request.Content = new StringContent($"grant_type=&username={loginEntry.Text}&password={passwordEntry.Text}&scope=&client_id=&client_secret=");
         request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+        string responseBody;
         try
         {
             HttpResponseMessage response = await client.SendAsync(request);
@@ -35,37 +32,18 @@ public partial class MainPage : ContentPage
         }
         catch (Exception) 
         {
-            statusLabel.Text = "somethign went wrong with login!";
+            statusLabel.Text = "Something went wrong!";
             return;
         }
-
-        User.ThisUserToken = responseBody.Split("\"")[7];
+        if (!singInRadioButton.IsChecked)
+            return;
+		User.ThisUserName = loginEntry.Text;
+        User.ThisUserToken = responseBody.Split("\"")[3];
         if(User.ThisUserToken == null)
         {
-            statusLabel.Text = "somethign went wrong with login!";
+            statusLabel.Text = "Something went wrong!";
             return;
         }
-
-        request = new HttpRequestMessage(HttpMethod.Post, $"http://{IP}:6969/rooms/{RoomNameEntry.Text}/");
-        request.Headers.Add("accept", "application/json");
-        request.Headers.Add("Authorization", $"Bearer {User.ThisUserToken}");
-        request.Content = new StringContent("");
-        request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
-        try
-        {
-            HttpResponseMessage response = await client.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-        }
-        catch(Exception ex) 
-        {
-            if(ex is HttpRequestException && Convert.ToInt32((ex as HttpRequestException).StatusCode) == 400)
-            {
-                //JOIN THE ROOM
-            }
-
-            statusLabel.Text = "somethign went wrong with the room!";
-            return;
-        }
-        await Shell.Current.GoToAsync($"{nameof(DialogPage)}?RoomName={RoomNameEntry.Text}", true);
+        await Shell.Current.GoToAsync(nameof(EnterRoom), true);
     }
 }

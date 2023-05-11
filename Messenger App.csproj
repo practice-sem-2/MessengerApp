@@ -77,4 +77,6 @@
 	  <Folder Include="Converters\" />
 	</ItemGroup>
 
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionMessengerAppHideInfoBar="True" XamarinHotReloadWrongLinkerErrorInfoBarMessengerAppHideInfoBar="True" /></VisualStudio></ProjectExtensions>
+
 </Project>

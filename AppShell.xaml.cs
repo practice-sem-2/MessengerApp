@@ -10,6 +10,7 @@ public partial class AppShell : Shell
 
 		Routing.RegisterRoute(nameof(mainPage), typeof(MainPage));
 		Routing.RegisterRoute(nameof(DialogPage), typeof(DialogPage));
+		Routing.RegisterRoute(nameof(EnterRoom), typeof(EnterRoom));
 
 	}
 }
