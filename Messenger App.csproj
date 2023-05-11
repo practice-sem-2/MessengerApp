@@ -15,7 +15,7 @@
 		<ApplicationTitle>Messenger App</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.messenger_app</ApplicationId>
+		<ApplicationId>com.galtexx.messenger_app</ApplicationId>
 		<ApplicationIdGuid>dd0b8a22-1ac0-4f8a-bed4-efe03fc6a3ef</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -79,4 +79,11 @@
 
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionMessengerAppHideInfoBar="True" XamarinHotReloadWrongLinkerErrorInfoBarMessengerAppHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningKeyStore>key.keystore</AndroidSigningKeyStore>
+		<AndroidSigningKeyAlias>Messanger</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>mypassword</AndroidSigningKeyPass>
+		<AndroidSigningStorePass>mypassword</AndroidSigningStorePass>
+	</PropertyGroup>
 </Project>

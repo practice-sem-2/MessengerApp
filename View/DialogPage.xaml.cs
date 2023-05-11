@@ -22,6 +22,8 @@ public partial class DialogPage : ContentPage
 
     private void Button_Clicked(object sender, EventArgs e)
     {
+        (BindingContext as DialogViewModel).SendMessage.Execute(SenderEntry.Text);
         SenderEntry.Text = "";
+        //x:Reference crashed app on PROD, so i cant use Commands properly
     }
 }

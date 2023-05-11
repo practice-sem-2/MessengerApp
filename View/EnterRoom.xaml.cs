@@ -50,6 +50,6 @@ public partial class EnterRoom : ContentPage
                 return;
             }
         }
-        await Shell.Current.GoToAsync($"{nameof(DialogPage)}?RoomName={roomNameEntry.Text}", true);
+            await Shell.Current.GoToAsync($"{nameof(DialogPage)}?RoomName={roomNameEntry.Text}", true);
     }
 }
