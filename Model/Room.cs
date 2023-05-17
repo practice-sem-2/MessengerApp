@@ -4,20 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+#pragma warning disable IDE1006 // Naming
 namespace Messenger_App.Model
 {
     internal class Room
     {
-        private int members_count;
-        private string name;
+        private int _members_count;
+        private string _name;
 
-        public int AmountOfUsers { get => members_count; set => members_count = value; }
-        public string Name { get => name; set => name = value; }
+        //gotta love how JSON serializer makes me ruin my own naming
+        public string name { get => _name; set => _name = value; }
 
-        public Room(string name, int amountOfUsers)
+        public int members_count { get => _members_count; set => _members_count = value; }
+
+        public Room(string name, int members_count)
         {
-            Name = name;
-            AmountOfUsers = amountOfUsers;
+            _name = name;
+            _members_count = members_count;
         }
     }
+#pragma warning restore IDE1006 // Naming
 }

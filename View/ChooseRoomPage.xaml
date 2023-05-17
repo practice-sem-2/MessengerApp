@@ -2,10 +2,31 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Messenger_App.View.ChooseRoomPage"
-             Title="NewPage1">
-    <Grid RowDefinitions="5, 30, *, 45, 5">
-        <Label Text="Join Room" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+             xmlns:vm="clr-namespace:Messenger_App.ViewModel"
+             Shell.NavBarIsVisible="False">
+    <Grid RowDefinitions="5, 30, *, 45">
+        <Label Grid.Row="1" Text="Join Room" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
         
-        <Button Text="CreateNewRoom" Grid.Row="3"/>
+        <ScrollView Grid.Row="2">
+            <CollectionView ItemsSource="{Binding RoomsCollection}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="2">
+
+                            <Frame>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ChooseRoomViewModel}}, Path=JoinRoom}" CommandParameter="{Binding name}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Label Text="{Binding name}" HorizontalOptions="Center" Margin="0,10,0,0"/>
+                            <Label Text="{Binding members_count}" HorizontalOptions="End" Margin="10"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+        
+        <Button Text="Create New Room" Clicked="NewRoom_Button_Clicked" Grid.Row="3"/>
     </Grid>
 </ContentPage>
