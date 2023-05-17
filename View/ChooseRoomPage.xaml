@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Messenger_App.View.ChooseRoomPage"
+             Title="NewPage1">
+    <Grid RowDefinitions="5, 30, *, 45, 5">
+        <Label Text="Join Room" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+        
+        <Button Text="CreateNewRoom" Grid.Row="3"/>
+    </Grid>
+</ContentPage>

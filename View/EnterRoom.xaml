@@ -7,7 +7,7 @@
              >
     <Grid RowDefinitions="*, 150, 45, 40, 45, 40, 30, 40, *" ColumnDefinitions="*, 1.5*, *">
         <Image Source="cool_ass_skeleton.svg" Grid.Row="1" Grid.Column="1"/>
-        <Label Grid.Column="1" Grid.Row="3" HorizontalOptions="Center" HorizontalTextAlignment="Center" x:Name="statusLabel"/>
+        <Label Text="Create new Room" Grid.Column="1" Grid.Row="3" HorizontalOptions="Center" HorizontalTextAlignment="Center" x:Name="statusLabel"/>
         <Entry Placeholder="Room name" x:Name="roomNameEntry" Grid.Column="1" Grid.Row="5" />
         <Button Text="EnterRoom" Clicked="EnterRoom_Button_Clicked" Grid.Column="1" Grid.Row="7"/>
     </Grid>

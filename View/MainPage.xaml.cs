@@ -44,6 +44,6 @@ public partial class MainPage : ContentPage
             statusLabel.Text = "Something went wrong!";
             return;
         }
-        await Shell.Current.GoToAsync(nameof(EnterRoom), true);
+        await Shell.Current.GoToAsync(nameof(ChooseRoomPage), true);
     }
 }

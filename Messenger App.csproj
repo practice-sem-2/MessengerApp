@@ -71,10 +71,19 @@
 	  <MauiXaml Update="View\EnterRoom.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\ChooseRoomPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Converters\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="View\ChooseRoomPage.xaml.cs">
+	    <DependentUpon>ChooseRoomPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionMessengerAppHideInfoBar="True" XamarinHotReloadWrongLinkerErrorInfoBarMessengerAppHideInfoBar="True" /></VisualStudio></ProjectExtensions>
