@@ -86,6 +86,8 @@ namespace Messenger_App.ViewModel
             {
                 MessagesCollection.Add(new Message($"{wsResult.Split("\"")[7]} joined this room ", new User("System")));
             }
+            else if(wsResult.Split("\"")[3] == "user_disconnected")
+                MessagesCollection.Add(new Message($"{wsResult.Split("\"")[7]} left the room", new User("System")));
             else
                 MessagesCollection.Add(new Message(wsResult, new User("System")));
         }
@@ -107,7 +109,7 @@ namespace Messenger_App.ViewModel
                 string responseBody = await response.Content.ReadAsStringAsync();
                 response.EnsureSuccessStatusCode();
             }
-            catch {
+            catch(Exception ex) {
             //atempt to send message failed
                 message.MessageText = "This message could not be sent.";
                 message.SenderName = "System";

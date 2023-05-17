@@ -27,21 +27,32 @@ public partial class EnterRoom : ContentPage
         }
         catch (Exception ex)
         {
-            if (ex is HttpRequestException && Convert.ToInt32((ex as HttpRequestException).StatusCode) == 400)
+            if (Convert.ToInt32((ex as HttpRequestException).StatusCode.Value) == 400)
             {
 
                 HttpRequestMessage reRequest = new(HttpMethod.Post, $"http://{App.IP}:6969/rooms/{roomNameEntry.Text}/join");
                 reRequest.Headers.Add("accept", "application/json");
                 reRequest.Headers.Add("Authorization", $"Bearer {User.ThisUserToken}");
+                reRequest.Content = new StringContent("");
+                reRequest.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+                HttpResponseMessage response = new();
                 try
                 {
-                    HttpResponseMessage response = await client.SendAsync(reRequest);
+                    response = await client.SendAsync(reRequest);
                     response.EnsureSuccessStatusCode();
                 }
                 catch(Exception exe) 
                 {
-                    if (exe.Message.Split("\"").Length >= 4 && exe.Message.Split("\"")[3] != "User already in room")
-                    { }
+                    if (exe is HttpRequestException && Convert.ToInt32((exe as HttpRequestException).StatusCode.Value) != 400)
+                    {
+                        statusLabel.Text = "Failed to join";
+                        return;
+                    }
+                }
+                if((int)response.StatusCode == 307)
+                {
+                    statusLabel.Text = response.Headers.Location.OriginalString;
+                    return;
                 }
             }
             else
