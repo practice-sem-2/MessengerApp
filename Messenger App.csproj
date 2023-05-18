@@ -57,7 +57,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\back_arrow.svg" />
 	  <None Remove="Resources\Images\cool_ass_skeleton.svg" />
+	  <None Remove="Resources\Images\refresh_arrow.svg" />
 	</ItemGroup>
 
 	<ItemGroup>

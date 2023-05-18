@@ -13,16 +13,16 @@
 
     <Grid RowDefinitions="60, *, 60" ColumnDefinitions="90, *, 60">
         <Grid ColumnDefinitions="60, *" Grid.ColumnSpan="3">
-            <Button Clicked="Back_Button_Clicked" Command="{Binding EndDialog}" CornerRadius="0"/>
+            <ImageButton Clicked="Back_Button_Clicked" Source="back_arrow.svg" Command="{Binding EndDialog}" CornerRadius="0"/>
             <Label Text="{Binding RoomName}" Grid.Column="1" FontSize="30" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
         </Grid>
-        <ScrollView Grid.Row="1" Grid.ColumnSpan="3" Margin="5, 0, 5, 15" >
+        <ScrollView Grid.Row="1" Grid.ColumnSpan="3" Margin="5, 0, 5, 15">
             <CollectionView ItemsSource="{Binding MessagesCollection}" VerticalOptions="End">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid HorizontalOptions="{Binding ScreenPosition}" RowDefinitions=" *" Margin="0, 3, 0, 0">
-                            <Border BackgroundColor="{Binding MessageColor}" Margin="-10,-10,-10,-10" StrokeShape="RoundRectangle 30, 30, 30, 30"/>
-                            <Label  x:Name="MessageTextLabel" Text="{Binding MessageText}" LineHeight="1"/>
+                        <Grid HorizontalOptions="{Binding ScreenPosition}" RowDefinitions=" *" Padding="3" Margin="0, 3, 0, 0">
+                            <Border BackgroundColor="{Binding MessageColor}" Padding="30, 10, 20, 10" StrokeShape="RoundRectangle 5, 5, 5, 5"/>
+                            <Label  x:Name="MessageTextLabel" HorizontalTextAlignment="Center" Text="{Binding MessageText}" LineHeight="1" VerticalOptions="Center"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

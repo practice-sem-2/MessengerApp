@@ -28,6 +28,14 @@ namespace Messenger_App.ViewModel
 
         public ICommand JoinRoom => new Command<string>(JoinRoomCommand);
 
+        public ICommand RefreshRoomsCollection => new Command(UpdateToomsCollection);
+
+        private void UpdateToomsCollection()
+        {
+            RoomsCollection = Task.Run(ReciveData).Result;
+            OnPropertyChanged(nameof(RoomsCollection));
+        }
+
         private async void JoinRoomCommand(string roomname)
         {
             await Shell.Current.GoToAsync($"{nameof(DialogPage)}?RoomName={roomname}");
@@ -46,10 +54,7 @@ namespace Messenger_App.ViewModel
                 response.EnsureSuccessStatusCode();
                 responseBody = await response.Content.ReadAsStringAsync();
             }
-            catch (Exception ex)
-            {
-                
-            }
+            catch { }
             return JsonSerializer.Deserialize<ObservableCollection<Room>>(responseBody);
         }
     }

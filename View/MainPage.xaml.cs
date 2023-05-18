@@ -35,7 +35,7 @@ public partial class MainPage : ContentPage
             statusLabel.Text = "Something went wrong!";
             return;
         }
-        if (!singInRadioButton.IsChecked)
+        if (!singInRadioButton.IsChecked || responseBody.Split("\"").Length < 2)
             return;
 		User.ThisUserName = loginEntry.Text;
         User.ThisUserToken = responseBody.Split("\"")[3];

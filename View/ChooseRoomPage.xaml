@@ -4,14 +4,21 @@
              x:Class="Messenger_App.View.ChooseRoomPage"
              xmlns:vm="clr-namespace:Messenger_App.ViewModel"
              Shell.NavBarIsVisible="False">
-    <Grid RowDefinitions="5, 30, *, 45">
-        <Label Grid.Row="1" Text="Join Room" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-        
-        <ScrollView Grid.Row="2">
+    <Grid RowDefinitions="5, 30,*, 40, 40, 30, 45" ColumnDefinitions="*, 30">
+        <Label Grid.Row="1" Grid.ColumnSpan="2"  Text="Rooms you are in" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+        <ImageButton HorizontalOptions="End" Grid.Column="1" Grid.Row="1" Source="refresh_arrow.svg" Command="{Binding RefreshRoomsCollection}"/>
+        <ScrollView Grid.Row="2" Grid.ColumnSpan="2">
             <CollectionView ItemsSource="{Binding RoomsCollection}" SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <Grid RowDefinitions="*,200, 60, *">
+                        <Frame Grid.RowSpan="4"/>
+                        <Image Source="cool_ass_skeleton.svg" Grid.Row="1" Opacity="0.6"/>
+                        <Label Grid.Row="2" Text="Looks Empty!" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Grid>
+                </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="2">
+                        <Grid Margin="2" Grid.ColumnSpan="2">
 
                             <Frame>
                                 <Frame.GestureRecognizers>
@@ -26,7 +33,10 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </ScrollView>
-        
-        <Button Text="Create New Room" Clicked="NewRoom_Button_Clicked" Grid.Row="3"/>
+
+        <Entry x:Name="roomNameEntry" Placeholder="Join Another Room" Grid.Row="3" Grid.ColumnSpan="2"/>
+        <Button Text="Join" Grid.Row="4" Grid.ColumnSpan="2" Clicked="JoinRoom_Button_Clicked"/>
+        <Label Text="OR" TextColor="DarkGray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="5"/>
+        <Button Text="Create New Room" Clicked="NewRoom_Button_Clicked" Grid.Row="6" Grid.ColumnSpan="2"/>
     </Grid>
 </ContentPage>

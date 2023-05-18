@@ -9,7 +9,7 @@ using System.Text.Json;
 using System.Windows.Input;
 
 
-//comented everything cuz i was getting a headace by looking at thes
+//comented everything cuz i was getting a headace by looking at this
 namespace Messenger_App.ViewModel
 {
     [QueryProperty("RoomName", "RoomName")]
@@ -109,8 +109,9 @@ namespace Messenger_App.ViewModel
                 string responseBody = await response.Content.ReadAsStringAsync();
                 response.EnsureSuccessStatusCode();
             }
-            catch(Exception ex) {
-            //atempt to send message failed
+            catch
+            {
+                //atempt to send message failed
                 message.MessageText = "This message could not be sent.";
                 message.SenderName = "System";
             }
